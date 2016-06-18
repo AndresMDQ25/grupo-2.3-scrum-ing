@@ -30,23 +30,10 @@ public class Graph {
         }
     }
 
-    public void deleteVertex(Vertex v) {
+    public void removeVertex(Vertex v) {
         if (internalGraph.containsVertex(v)) {
-            Set<Edge> incomingEdges = internalGraph.incomingEdgesOf(v);
-            for (Edge e : incomingEdges) {
-                e.removeAtts();
-                internalGraph.removeEdge(e);
-            }
-            Set<Edge> outgoingEdges = internalGraph.outgoingEdgesOf(v);
-            for (Edge e : outgoingEdges) {
-                e.removeAtts();
-                internalGraph.removeEdge(e);
-            }
-            v.removeAtts();
             internalGraph.removeVertex(v);
         }
-
-
     }
 
     @Override

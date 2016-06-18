@@ -45,7 +45,6 @@ public class Main {
 
         g.addEdge(e1);
         g.addEdge(e2);
-        g.addEdge(e3);
 
         //IMPRIMO EL GRAFO
         System.out.println(g.toString());
