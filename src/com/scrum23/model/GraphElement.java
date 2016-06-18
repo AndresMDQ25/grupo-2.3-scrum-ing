@@ -16,5 +16,11 @@ public abstract class GraphElement {
         return true;
     }
 
-    public Hashtable getAtts(){return atts;}
+    public void removeAtts() {
+        atts.clear();
+    }
+
+    public Hashtable getAtts() {
+        return atts;
+    }
 }
