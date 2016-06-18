@@ -34,8 +34,7 @@ public class Main {
         e1.addAttribute(new Attribute("relacion","mulos"));
         Edge e2 = new Edge(v2,v3);
         e2.addAttribute(new Attribute("relacion","dk"));
-        Edge e3 = new Edge(v3,v1);
-        e3.addAttribute(new Attribute("relacion","asdasd"));
+
 
 
         //CREO UN GRAFO AL CUAL LE AGREGO LOS ELEMENTOS CORRESPONDIENTES
@@ -46,6 +45,7 @@ public class Main {
 
         g.addEdge(e1);
         g.addEdge(e2);
+        g.removeEdge(v1, v2);
 
 
         //IMPRIMO EL GRAFO

@@ -16,7 +16,7 @@ public abstract class GraphElement {
         return true;
     }
 
-    public void removeAttribute(String name){
+    public void removeAttribute(String name) {
         atts.remove(name);
     }
 

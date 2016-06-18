@@ -30,6 +30,10 @@ public class Graph {
         }
     }
 
+    public void removeEdge(Vertex o, Vertex d){
+        internalGraph.removeEdge(o,d);
+    }
+
     public void removeVertex(Vertex v) {
         if (internalGraph.containsVertex(v)) {
             internalGraph.removeVertex(v);
