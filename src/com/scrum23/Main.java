@@ -22,6 +22,7 @@ public class Main {
         Vertex v2 = new Vertex();
         v2.addAttribute(new Attribute("nombre","PPQA"));
         v2.addAttribute(new Attribute("area","soporte"));
+        v2.removeAttribute("area");
 
         //CREO VÉRTICE 3 CON SUS RESPECTIVOS ATRIBUTOS
         Vertex v3 = new Vertex();
@@ -45,6 +46,7 @@ public class Main {
 
         g.addEdge(e1);
         g.addEdge(e2);
+
 
         //IMPRIMO EL GRAFO
         System.out.println(g.toString());

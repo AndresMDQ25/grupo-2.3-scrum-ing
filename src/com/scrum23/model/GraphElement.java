@@ -16,6 +16,10 @@ public abstract class GraphElement {
         return true;
     }
 
+    public void removeAttribute(String name){
+        atts.remove(name);
+    }
+
     public void removeAtts() {
         atts.clear();
     }
