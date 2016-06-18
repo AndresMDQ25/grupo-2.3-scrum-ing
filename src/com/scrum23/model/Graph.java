@@ -22,7 +22,12 @@ public class Graph {
     }
 
     public void addEdge(Edge e){
-        internalGraph.addEdge(e.getOrigin(),e.getDestiny(), e.getAtts());
+        try {
+            internalGraph.addEdge(e.getOrigin(), e.getDestiny(), e.getAtts());
+        }
+        catch (Exception ex){
+            System.out.println("NO SE AGREGÓ ARCO: "+e.toString()+" POR GENERAR CICLO");
+        }
     }
 
     public void deleteVertex(Vertex v) {

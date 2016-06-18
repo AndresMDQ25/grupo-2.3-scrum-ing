@@ -23,17 +23,29 @@ public class Main {
         v2.addAttribute(new Attribute("nombre","PPQA"));
         v2.addAttribute(new Attribute("area","soporte"));
 
-        //LOS RELACIONO CON UN ARCO Y LE AGREGO UN ATRIBUTO
+        //CREO VÉRTICE 3 CON SUS RESPECTIVOS ATRIBUTOS
+        Vertex v3 = new Vertex();
+        v3.addAttribute(new Attribute("nombre","OPD"));
+        v3.addAttribute(new Attribute("area","asd"));
+
+        //LOS RELACIONO A LOS ARCOS Y LE AGREGO UN ATRIBUTO
         Edge e1 = new Edge(v1,v2);
         e1.addAttribute(new Attribute("relacion","mulos"));
+        Edge e2 = new Edge(v2,v3);
+        e2.addAttribute(new Attribute("relacion","dk"));
+        Edge e3 = new Edge(v3,v1);
+        e3.addAttribute(new Attribute("relacion","asdasd"));
 
 
         //CREO UN GRAFO AL CUAL LE AGREGO LOS ELEMENTOS CORRESPONDIENTES
         Graph g = new Graph();
         g.addVertex(v1);
         g.addVertex(v2);
+        g.addVertex(v3);
 
         g.addEdge(e1);
+        g.addEdge(e2);
+        g.addEdge(e3);
 
         //IMPRIMO EL GRAFO
         System.out.println(g.toString());
