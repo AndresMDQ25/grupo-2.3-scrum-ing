@@ -28,11 +28,7 @@ public class Attribute {
     public String toString() {
         return value;
     }
-
-    public void removeAttribute() {
-
-    }
-
+    
     @Override
     public boolean equals(Object other) {
         if (other == null) return false;
