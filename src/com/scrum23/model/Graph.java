@@ -4,6 +4,7 @@ import org.jgrapht.DirectedGraph;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
+import java.util.Set;
 
 /**
  * Created by Mariano on 17/6/2016.
