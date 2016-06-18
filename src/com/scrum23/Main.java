@@ -5,7 +5,7 @@ import com.scrum23.model.Edge;
 import com.scrum23.model.Vertex;
 import com.scrum23.model.Graph;
 import com.scrum23.GUI.GraphPanel;
-
+import com.scrum23.GUI.MainWindow;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import org.jgraph.JGraph;
@@ -48,8 +48,9 @@ public class Main {
         g.addEdge(e1);
         g.addEdge(e2);
         g.removeEdge(v1, v2);
-
-        g.display();
+        
+        new MainWindow(g.getDisplay()).setVisible(true);
+        //g.display();
 
         //IMPRIMO EL GRAFO
         System.out.println(g.toString());

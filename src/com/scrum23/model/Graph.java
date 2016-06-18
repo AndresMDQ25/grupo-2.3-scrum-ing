@@ -6,6 +6,9 @@ import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import java.util.Set;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * Created by Mariano on 17/6/2016.
@@ -41,8 +44,10 @@ public class Graph {
         }
     }
 
-    public void display() {
+    public JScrollPane getDisplay() {
         GraphPanel test = new GraphPanel(internalGraph);
+        //test.getPanel().setVisible(true);
+        return test.getPanel();
     }
 
     @Override

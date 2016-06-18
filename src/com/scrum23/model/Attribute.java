@@ -29,6 +29,10 @@ public class Attribute {
         return name+" = "+value;
     }
 
+    public void removeAttribute() {
+
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == null) return false;
