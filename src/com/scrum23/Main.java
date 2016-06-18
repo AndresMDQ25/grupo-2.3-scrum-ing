@@ -27,10 +27,12 @@ public class Main {
         Edge e1 = new Edge(v1,v2);
         e1.addAttribute(new Attribute("relacion","mulos"));
 
+
         //CREO UN GRAFO AL CUAL LE AGREGO LOS ELEMENTOS CORRESPONDIENTES
         Graph g = new Graph();
         g.addVertex(v1);
         g.addVertex(v2);
+
         g.addEdge(e1);
 
         //IMPRIMO EL GRAFO

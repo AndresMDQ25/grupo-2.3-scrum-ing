@@ -14,7 +14,7 @@ public class Graph {
     private DirectedGraph internalGraph;
 
     public Graph (){
-        internalGraph = new DefaultDirectedGraph<Vertex,DefaultEdge>(DefaultEdge.class);
+        internalGraph = new DirectedAcyclicGraph(DefaultEdge.class);
     }
 
     public void addVertex(Vertex v){
