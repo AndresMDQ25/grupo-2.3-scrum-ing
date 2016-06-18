@@ -1,5 +1,6 @@
 package com.scrum23.model;
 
+import com.scrum23.GUI.GraphPanel;
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -38,6 +39,10 @@ public class Graph {
         if (internalGraph.containsVertex(v)) {
             internalGraph.removeVertex(v);
         }
+    }
+
+    public void display() {
+        GraphPanel test = new GraphPanel(internalGraph);
     }
 
     @Override
