@@ -47,10 +47,13 @@ public class Main {
 
         g.addEdge(e1);
         g.addEdge(e2);
+        //g.removeEdge(v1, v2);
+        
+        MainWindow main = new MainWindow(g.getDisplay());
+        main.setVisible(true);
         g.removeEdge(v1, v2);
         
-        new MainWindow(g.getDisplay()).setVisible(true);
-        //g.display();
+        
 
         //IMPRIMO EL GRAFO
         System.out.println(g.toString());

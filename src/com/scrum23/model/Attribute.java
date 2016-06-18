@@ -26,7 +26,7 @@ public class Attribute {
 
     @Override
     public String toString() {
-        return name+" = "+value;
+        return value;
     }
 
     public void removeAttribute() {
