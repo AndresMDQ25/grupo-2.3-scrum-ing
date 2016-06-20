@@ -6,6 +6,7 @@ import java.util.Hashtable;
  * Created by Mariano on 17/6/2016.
  */
 public class Vertex extends GraphElement{
+    private int id;
 
     public Vertex(){
         super.atts=new Hashtable();
@@ -24,5 +25,13 @@ public class Vertex extends GraphElement{
         Vertex otherVertex = (Vertex)other;
         if(this.getAtts().equals(otherVertex.getAtts())) return true;
         return false;
+    }
+
+    public void setId(int count) {
+        id = count;     
+    }
+    
+    public int getId(){
+        return id;
     }
 }
