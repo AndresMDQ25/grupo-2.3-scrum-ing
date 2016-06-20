@@ -16,13 +16,16 @@ import javax.swing.JScrollPane;
 public class Graph {
 
     private DirectedGraph internalGraph;
+    private int count = 0;
 
     public Graph (){
         internalGraph = new DirectedAcyclicGraph(DefaultEdge.class);
     }
 
     public void addVertex(Vertex v){
+        v.setId(count);
         internalGraph.addVertex(v);
+        count++;
     }
 
     public void addEdge(Edge e){
@@ -53,5 +56,12 @@ public class Graph {
     @Override
     public String toString() {
         return internalGraph.toString();
+    }
+    public Set<Vertex> getAllVertex(){
+        return internalGraph.vertexSet();
+    }
+    
+    public Set<Edge> getOutgoingEdgesOf(Vertex v) {
+        return internalGraph.outgoingEdgesOf(v);
     }
 }
