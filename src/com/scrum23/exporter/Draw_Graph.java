@@ -1,4 +1,4 @@
-package exporter;
+package exportar;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class Draw_Graph {
 	public static void main(String[] args) {
+		try {
 			File dir_actual = new File(".");
 			try {
 				String dir = dir_actual.getCanonicalPath();
@@ -48,5 +49,9 @@ public class Draw_Graph {
 			       e.printStackTrace();
 			}
 
+		    
+		} catch (Exception ex) {
+		      ex.printStackTrace();
+	    } 	
 	}
 }
