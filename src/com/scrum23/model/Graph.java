@@ -64,4 +64,11 @@ public class Graph {
     public Set<Edge> getOutgoingEdgesOf(Vertex v) {
         return internalGraph.outgoingEdgesOf(v);
     }
+	
+	 public Vertex getInstance(String id) {
+    	for (Vertex v: this.getAllVertex())
+    		if (Integer.toString(v.getId()).equals(id))
+    			return v;
+    	return null;
+    }
 }
