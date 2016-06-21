@@ -33,7 +33,7 @@ public class Graph {
             iinternalGraph.addEdge(e.getOrigin(), e.getDestiny(), e);
         }
         catch (Exception ex){
-            System.out.println("NO SE AGREGÓ ARCO: "+e.toString()+" POR GENERAR CICLO");
+            System.out.println("NO SE PUDO AGREGAR ARCO: "+e.toString()+);
         }
     }
 
