@@ -38,18 +38,17 @@ public class Importer {
 	public void identifyNodes(Parser parser) {
 		List<Node> nodes = parser.getGraphs().get(0).getNodes(false);
 		for (Node n: nodes) {	
-			GraphElement vertex = new Vertex();
+			Vertex vertex = new Vertex();			
 			identifyAttributes(n.getAttribute("label"),vertex);
 			graph.addVertex((Vertex)vertex);
+			Id id = new Id(); id.setId(Integer.toString(vertex.getId())); n.setId(id);
 		}
 	}
 	
 	public void identifyArcs(Parser parser) {
 		for (com.alexmerz.graphviz.objects.Edge e: parser.getGraphs().get(0).getEdges()) {	
-			Vertex origin = new Vertex();
-			Vertex destiny = new Vertex();
-			identifyAttributes(e.getSource().getNode().getAttribute("label"),origin);
-			identifyAttributes(e.getTarget().getNode().getAttribute("label"),destiny);
+			Vertex origin = graph.getInstance(e.getSource().getNode().getId().getId());
+			Vertex destiny = graph.getInstance(e.getTarget().getNode().getId().getId());
 			GraphElement edge = new Edge(origin,destiny);
 			identifyAttributes(e.getAttribute("label"),edge);
 			graph.addEdge((Edge)edge);
