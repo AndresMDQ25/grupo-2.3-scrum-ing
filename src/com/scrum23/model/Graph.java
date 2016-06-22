@@ -30,7 +30,7 @@ public class Graph {
 
     public void addEdge(Edge e){
         try {
-            iinternalGraph.addEdge(e.getOrigin(), e.getDestiny(), e);
+            internalGraph.addEdge(e.getOrigin(), e.getDestiny(), e);
         }
         catch (Exception ex){
             System.out.println("NO SE PUDO AGREGAR ARCO: "+e.toString()+);
