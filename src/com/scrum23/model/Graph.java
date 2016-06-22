@@ -103,4 +103,13 @@ public class Graph {
     private Set<Edge> getAllEdges() {
         return internalGraph.edgeSet();
     }
+
+    public void replaceEdge(Edge newEdge, Edge toEdit) {
+        if (newEdge != null) {
+            int id = toEdit.getId();
+            this.removeEdge(toEdit.getOrigin(), toEdit.getDestiny(), toEdit);
+            newEdge.setId(id);
+            this.addEdge(newEdge);
+        }
+    }
 }

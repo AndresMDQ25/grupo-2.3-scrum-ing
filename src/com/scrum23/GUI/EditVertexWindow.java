@@ -56,6 +56,7 @@ public class EditVertexWindow extends javax.swing.JFrame {
         dtm.setRowCount(allAtts.size());
         dtm.setColumnCount(2);
         dtm.setDataVector(allAtts, columnNames);
+        dtm.addRow(new Object[]{null,null,null,null});
         jTable1.setModel(dtm);
         
         this.setVisible(true);

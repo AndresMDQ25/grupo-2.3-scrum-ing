@@ -32,4 +32,8 @@ public abstract class GraphElement {
     public int getId(){
         return id;
     }
+    
+    public void setId(int count) {
+        id = count;     
+    }
 }

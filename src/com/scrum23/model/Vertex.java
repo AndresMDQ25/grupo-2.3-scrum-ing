@@ -27,9 +27,7 @@ public class Vertex extends GraphElement{
         return false;
     }
 
-    public void setId(int count) {
-        id = count;     
-    }
+    
     
     
 }

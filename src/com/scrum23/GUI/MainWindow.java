@@ -359,25 +359,30 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     void editEdgeAtts(TableModel table, Edge toEdit, int origin, int destiny) {
-        //cambio el origen y el destino
+        //creo un nuevo Edge y borro el anterior
+        
+        Edge newEdge = null;
         Vertex originV = currentGraph.getVertexById(origin);
         Vertex destinyV = currentGraph.getVertexById(destiny);
         if (originV != null && destinyV != null) {
-            toEdit.setOrigin(originV);
-            toEdit.setDestiny(destinyV);
-        }
-        //borro los atributos y agrego los nuevos
-        toEdit.removeAtts();
-        for (int i=0; i < table.getRowCount(); i++) {
-            String name = (String)table.getValueAt(i, 0);
-            if (name != null) {
-                String value = (String)table.getValueAt(i, 1);
-                if (value != null) {
-                    Attribute newAt = new Attribute(name, value); 
-                    toEdit.addAttribute(newAt);
+            newEdge = new Edge(originV, destinyV);
+            //agrego los atributos al nuevo edge
+            for (int i=0; i < table.getRowCount(); i++) {
+                String name = (String)table.getValueAt(i, 0);
+                if (name != null) {
+                    String value = (String)table.getValueAt(i, 1);
+                    if (value != null) {
+                        Attribute newAt = new Attribute(name, value); 
+                        newEdge.addAttribute(newAt);
+                    }
                 }
             }
         }
+        
+        //borro los atributos y agrego los nuevos
+        //toEdit.removeAtts();
+        
+        currentGraph.replaceEdge(newEdge, toEdit);
         update();
     }
 
