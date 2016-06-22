@@ -13,6 +13,7 @@ public class Edge extends GraphElement{
         super.atts=new Hashtable();
         origin = o;
         destiny = d;
+        
     }
 
     public void setOrigin(Vertex v){
@@ -29,6 +30,7 @@ public class Edge extends GraphElement{
 
     @Override
     public String toString() {
-        return origin.toString()+"->"+destiny.toString();
+        id = Integer.parseInt((String)(""+origin.getId()+destiny.getId()), 10);
+        return id+" / "+atts.toString();
     }
 }

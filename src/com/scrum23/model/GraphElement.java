@@ -8,6 +8,7 @@ import java.util.Hashtable;
 public abstract class GraphElement {
 
     protected Hashtable<String, Attribute> atts;
+    protected int id;
 
     public boolean addAttribute(Attribute a){
         if(atts.containsKey(a.getName()))

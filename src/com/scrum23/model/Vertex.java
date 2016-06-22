@@ -6,7 +6,7 @@ import java.util.Hashtable;
  * Created by Mariano on 17/6/2016.
  */
 public class Vertex extends GraphElement{
-    private int id;
+    
 
     public Vertex(){
         super.atts=new Hashtable();
@@ -14,7 +14,7 @@ public class Vertex extends GraphElement{
 
     @Override
     public String toString() {
-        return atts.toString();
+        return id+" / "+atts.toString();
     }
 
     @Override

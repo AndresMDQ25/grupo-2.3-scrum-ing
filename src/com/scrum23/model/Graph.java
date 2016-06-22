@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 public class Graph {
 
     private DirectedGraph internalGraph;
-    private int count = 0;
+    private int count = 1;
 
     public Graph (){
         internalGraph = new DirectedAcyclicGraph(DefaultEdge.class);
@@ -33,7 +33,7 @@ public class Graph {
             internalGraph.addEdge(e.getOrigin(), e.getDestiny(), e);
         }
         catch (Exception ex){
-            System.out.println("NO SE PUDO AGREGAR ARCO: "+e.toString()+);
+            System.out.println("NO SE PUDO AGREGAR ARCO: "+e.toString());
         }
     }
 
