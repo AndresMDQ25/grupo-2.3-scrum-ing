@@ -8,10 +8,12 @@ package com.scrum23.GUI;
 import com.scrum23.importer.Importer;
 import com.scrum23.io.FileOperations;
 import com.scrum23.model.Attribute;
+import com.scrum23.model.Edge;
 import com.scrum23.model.Graph;
 import com.scrum23.model.Vertex;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -156,6 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu2.setText("Importar");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText(".viz");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +171,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu4.setText("Exportar");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText(".viz");
         jMenu4.add(jMenuItem2);
 
@@ -241,11 +245,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        NewEdgeWindow nedw = new NewEdgeWindow(this);
+        nedw.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         NewVertexWindow nvw = new NewVertexWindow(this);
         nvw.setVisible(true);
         
@@ -335,6 +340,30 @@ public class MainWindow extends javax.swing.JFrame {
         update();
     }
     
+    void newEdge(TableModel table, int origin, int destiny) {
+        //analizo la tabla, chequeo origen y destino, y creo la nueva dependencia
+        Vertex originV = currentGraph.getVertexById(origin);
+        Vertex destinyV = currentGraph.getVertexById(destiny);
+                        
+        if (originV != null && destinyV != null) {
+            Edge toAdd = new Edge(originV, destinyV);
+            for (int i=0; i < 6; i++) {
+                String name = (String)table.getValueAt(i, 0);
+                if (name != null) {
+                    String value = (String)table.getValueAt(i, 1);
+                    if (value != null) {
+                        Attribute newAt = new Attribute(name, value); 
+                        toAdd.addAttribute(newAt);
+                    }
+                }
+            }
+            currentGraph.addEdge(toAdd); 
+            update();
+        }
+        
+        
+    }
+    
     void update() {
         this.graphDisplay = currentGraph.getDisplay();
         this.graphPanel = this.graphDisplay.getPanel();
@@ -342,4 +371,6 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.revalidate();
         jScrollPane1.repaint();        
     }
+
+    
 }

@@ -1,6 +1,7 @@
 package com.scrum23.model;
 
 import com.scrum23.GUI.GraphPanel;
+import java.util.ArrayList;
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -69,5 +70,23 @@ public class Graph {
     		if (Integer.toString(v.getId()).equals(id))
     			return v;
     	return null;
+    }
+
+    public ArrayList<Integer> getVertexIds() {
+        ArrayList<Integer> currentList = new ArrayList<>();
+        Set<Vertex> allVertex = this.getAllVertex();
+        for (Vertex v : allVertex) {
+            currentList.add(v.getId());
+        }
+        return currentList;
+    }
+
+    public Vertex getVertexById(int id) {
+        Set<Vertex> allVertex = this.getAllVertex();
+        for (Vertex v : allVertex) {
+            if (v.getId() == id)
+                return v;
+        }
+        return null;
     }
 }
