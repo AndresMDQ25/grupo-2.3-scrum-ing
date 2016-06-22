@@ -61,5 +61,20 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/commons-io-2.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/mongo-java-driver-3.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/graphviz0_8_3beta.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/lib/graphviz0_8_3beta.jar!/doc" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/graphviz0_8_3beta.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

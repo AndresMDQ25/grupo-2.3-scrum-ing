@@ -6,12 +6,16 @@ import org.jgrapht.ext.JGraphModelAdapter;
 
 public class GraphPanel extends JFrame{
     private static final long serialVersionUID = 1L;
-    JGraph internal;
+    JGraph graph;
     JScrollPane panel;
 
     public GraphPanel(org.jgrapht.Graph g){
-        this.internal = new JGraph(new JGraphModelAdapter( g ));
-        this.panel = new JScrollPane(this.internal);
+        this.graph = new JGraph(new JGraphModelAdapter( g ));
+        graph.setConnectable(false);
+        graph.setEdgeLabelsMovable(false);
+        graph.setEditable(false);
+        graph.setDropEnabled(false);
+        this.panel = new JScrollPane(this.graph);
         //panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setMinimumSize(new Dimension(800, 600));
         //panel.pack();
