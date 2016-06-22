@@ -150,6 +150,19 @@ public class MainWindow extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
+		
+		jMenuItem1.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent me) {
+			FileOperations op = new FileOperations();
+			File f = op.openFile();
+			Importer imp = new Importer();
+			try {
+				imp._import(f.getCanonicalPath());
+			} catch (IOException e) {e.printStackTrace();}
+		}
+        });
+		
         jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
