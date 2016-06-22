@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Draw_Graph {
 	
-	public static void main(String[] args) {
+	public void generatePDF() {
 		
 			File dir_actual = new File(".");
 			try {
