@@ -14,6 +14,7 @@ import com.scrum23.model.Vertex;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -90,9 +91,7 @@ public class MainWindow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -108,7 +107,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jScrollPane1 = graphPanel;
 
-        jButton1.setText("Editar curso");
+        jButton1.setText("Editar curso o dep.");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -129,24 +128,10 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Editar dependencia");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Eliminar curso");
+        jButton5.setText("Eliminar curso o dep.");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Eliminar dependencia");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -192,9 +177,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -214,11 +197,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)))
+                        .addComponent(jButton5)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -242,6 +221,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        EditSelectorWindow esw = new EditSelectorWindow(this);
+        esw.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -256,17 +237,10 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,9 +282,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -360,8 +332,34 @@ public class MainWindow extends javax.swing.JFrame {
             currentGraph.addEdge(toAdd); 
             update();
         }
-        
-        
+    }
+    
+    void editVertex(int vertexId) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        Vertex toEdit = currentGraph.getVertexById(vertexId);
+        System.out.println(toEdit.toString());
+        EditVertexWindow evw = new EditVertexWindow(this, toEdit);
+        System.out.println("llego hast aca");
+        //evw.setVisible(true);
+    }
+    
+    void editVertexAtts(TableModel table, Vertex toEdit) {
+        toEdit.removeAtts();
+        for (int i=0; i < table.getRowCount(); i++) {
+            String name = (String)table.getValueAt(i, 0);
+            if (name != null) {
+                String value = (String)table.getValueAt(i, 1);
+                if (value != null) {
+                    Attribute newAt = new Attribute(name, value); 
+                    toEdit.addAttribute(newAt);
+                }
+            }
+        }
+        update();
+    }
+
+    void editEdge(int edgeId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     void update() {
@@ -371,6 +369,8 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.revalidate();
         jScrollPane1.repaint();        
     }
+
+
 
     
 }

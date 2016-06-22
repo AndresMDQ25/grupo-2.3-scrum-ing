@@ -5,27 +5,60 @@
  */
 package com.scrum23.GUI;
 
+import com.scrum23.model.Attribute;
+import com.scrum23.model.Vertex;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
  *
  * @author Andres
  */
-public class NewEdgeWindow extends javax.swing.JFrame {
+public class EditVertexWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form NewVertexWindow
      */
     
     MainWindow informme;
+    private Vertex vertex;
+    private Hashtable attributes;
+    TableModel attsModel;
     
-    public NewEdgeWindow() {
+    public EditVertexWindow() {
         initComponents();
     }
     
-    public NewEdgeWindow(MainWindow informme) {
+    public EditVertexWindow(MainWindow informme, Vertex toEdit) {
         this.informme = informme;
+        this.vertex = toEdit;
+        attributes = toEdit.getAtts();
         initComponents();
+        //cargo los datos de los atributos en una tabla
+        Vector allAtts = new Vector<>();
+        for (String key : (Set<String>)attributes.keySet()) {
+            Vector<String> row = new Vector<>();
+            Attribute current = (Attribute)attributes.get(key);
+            row.add(current.getName());
+            row.add(current.getValue());
+            allAtts.add(row);
+        }
+        Vector<String> columnNames = new Vector<>();
+        columnNames.add("Nombre");
+        columnNames.add("Valor");
+        System.out.println(allAtts);
+        //cargo los dos vectores al nuevo modelo
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(allAtts.size());
+        dtm.setColumnCount(2);
+        dtm.setDataVector(allAtts, columnNames);
+        jTable1.setModel(dtm);
+        
+        this.setVisible(true);
     }
     
     public TableModel getTable() {
@@ -46,47 +79,27 @@ public class NewEdgeWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nueva dependencia");
+        setTitle("Nuevo curso");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        jLabel1.setText("Ingrese los atributos de la nueva dependencia ");
+        jLabel1.setText("Modifique o agregue atributos al curso");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Atributo", "Valor"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         jButton1.setText("OK");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,10 +113,6 @@ public class NewEdgeWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Desde el nodo");
-
-        jLabel3.setText("hacia el nodo");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,27 +120,13 @@ public class NewEdgeWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
-                        .addGap(0, 75, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,15 +135,8 @@ public class NewEdgeWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -163,7 +151,7 @@ public class NewEdgeWindow extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         this.setVisible(false);
-        informme.newEdge(this.getTable(),(int)jSpinner1.getValue(),(int)jSpinner2.getValue());
+        informme.editVertexAtts(this.getTable(), this.vertex);
         
         
     }//GEN-LAST:event_jButton1MouseClicked
@@ -191,13 +179,13 @@ public class NewEdgeWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewEdgeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditVertexWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewEdgeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditVertexWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewEdgeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditVertexWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewEdgeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditVertexWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -205,7 +193,7 @@ public class NewEdgeWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewEdgeWindow().setVisible(true);
+                new EditVertexWindow().setVisible(true);
             }
         });
     }
@@ -213,11 +201,7 @@ public class NewEdgeWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
