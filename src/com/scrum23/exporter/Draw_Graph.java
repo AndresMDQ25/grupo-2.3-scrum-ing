@@ -1,11 +1,13 @@
-package exporter;
+package com.scrum23.exporter;
 
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
 public class Draw_Graph {
+	
 	public static void main(String[] args) {
+		
 			File dir_actual = new File(".");
 			try {
 				String dir = dir_actual.getCanonicalPath();
