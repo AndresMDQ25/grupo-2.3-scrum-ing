@@ -4,12 +4,7 @@ import com.scrum23.model.Attribute;
 import com.scrum23.model.Edge;
 import com.scrum23.model.Vertex;
 import com.scrum23.model.Graph;
-import com.scrum23.GUI.GraphPanel;
 import com.scrum23.GUI.MainWindow;
-
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-import org.jgraph.JGraph;
-import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 
 public class Main {
 
