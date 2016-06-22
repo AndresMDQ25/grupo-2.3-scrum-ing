@@ -15,6 +15,7 @@ public class GraphPanel extends JFrame{
         graph.setEdgeLabelsMovable(false);
         graph.setEditable(false);
         graph.setDropEnabled(false);
+        graph.setDisconnectable(false);
         this.panel = new JScrollPane(this.graph);
         //panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setMinimumSize(new Dimension(800, 600));
