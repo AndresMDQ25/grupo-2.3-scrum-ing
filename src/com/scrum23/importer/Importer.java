@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import com.alexmerz.graphviz.ParseException;
 import com.alexmerz.graphviz.Parser;
+import com.alexmerz.graphviz.objects.Id;
 import com.alexmerz.graphviz.objects.Node;
 import com.scrum23.io.FileOperations;
 import com.scrum23.model.Attribute;

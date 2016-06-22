@@ -7,6 +7,8 @@ public class DbParser implements ParserAbstract {
 	@Override
 	public boolean _export(Graph graph, String path) {
 		// TODO Auto-generated method stub
+            //diego: le puse return false para que no tire error
+            return false;
 
 	}
 

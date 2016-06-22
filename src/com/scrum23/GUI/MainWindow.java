@@ -5,10 +5,18 @@
  */
 package com.scrum23.GUI;
 
+import com.scrum23.importer.Importer;
+import com.scrum23.io.FileOperations;
+import com.scrum23.model.Attribute;
+import com.scrum23.model.Graph;
+import com.scrum23.model.Vertex;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -16,6 +24,8 @@ import javax.swing.JScrollPane;
  */
 public class MainWindow extends javax.swing.JFrame {
     private JScrollPane graphPanel;
+    private GraphPanel graphDisplay;
+    private Graph currentGraph;
 
     /**
      * Creates new form MainWindow
@@ -41,9 +51,11 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
     }
     
-    public MainWindow(JScrollPane graph) {
+    public MainWindow(Graph graph) {
         //this.jInternalFrame1 = graph;
-        this.graphPanel = graph;
+        this.currentGraph = graph;
+        this.graphDisplay = graph.getDisplay();
+        this.graphPanel = this.graphDisplay.getPanel();
         //seteo el look and feel para Windows
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -150,19 +162,6 @@ public class MainWindow extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-		
-		jMenuItem1.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent me) {
-			FileOperations op = new FileOperations();
-			File f = op.openFile();
-			Importer imp = new Importer();
-			try {
-				imp._import(f.getCanonicalPath());
-			} catch (IOException e) {e.printStackTrace();}
-		}
-        });
-		
         jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
@@ -192,8 +191,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,6 +224,16 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        FileOperations op = new FileOperations();
+        File f = op.openFile();
+        Importer imp = new Importer();
+        try {
+            Graph imported;
+            imported = imp._import(f.getCanonicalPath());
+            //currentGraph=imported; esto creo que deberia andar, braian testealo
+            //update();
+        } catch (IOException e) {e.printStackTrace();}
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -237,6 +246,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        NewVertexWindow nvw = new NewVertexWindow(this);
+        nvw.setVisible(true);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -280,6 +292,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainWindow().setVisible(true);
             }
@@ -303,4 +316,30 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    void newVertex(TableModel table) {
+        //analizo la tabla y creo el nuevo curso
+        Vertex toAdd = new Vertex();
+        for (int i=0; i < 6; i++) {
+            String name = (String)table.getValueAt(i, 0);
+            if (name != null) {
+                String value = (String)table.getValueAt(i, 1);
+                if (value != null) {
+                    Attribute newAt = new Attribute(name, value); 
+                    toAdd.addAttribute(newAt);
+                }
+            }
+        }
+        toAdd.setId(0);
+        currentGraph.addVertex(toAdd); 
+        update();
+    }
+    
+    void update() {
+        this.graphDisplay = currentGraph.getDisplay();
+        this.graphPanel = this.graphDisplay.getPanel();
+        jScrollPane1.setViewport(graphPanel.getViewport());
+        jScrollPane1.revalidate();
+        jScrollPane1.repaint();        
+    }
 }

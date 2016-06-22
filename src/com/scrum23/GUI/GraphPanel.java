@@ -1,12 +1,8 @@
 package com.scrum23.GUI;
 import javax.swing.*;
 
-import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.view.mxGraph;
 import org.jgraph.JGraph;
 import org.jgrapht.ext.JGraphModelAdapter;
-
-import java.awt.*;
 
 public class GraphPanel extends JFrame{
     private static final long serialVersionUID = 1L;

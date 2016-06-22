@@ -47,10 +47,9 @@ public class Graph {
         }
     }
 
-    public JScrollPane getDisplay() {
-        GraphPanel test = new GraphPanel(internalGraph);
-        //test.getPanel().setVisible(true);
-        return test.getPanel();
+    public GraphPanel getDisplay() {
+        GraphPanel display = new GraphPanel(internalGraph);
+        return display;
     }
 
     @Override
