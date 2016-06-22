@@ -62,25 +62,6 @@ public class Exporter {
 		
 		return edge_declaration;
 	}
-	
-
-	/*  PARA TESTEAR!!!!!
-	public static void main(String[] args) {
-		
-		Graph g = new Graph();
-		Vertex v1 = new Vertex();
-		v1.addAttribute(new Attribute("Nombre","OPD"));
-		v1.addAttribute(new Attribute("nivel", "3"));
-		Vertex v2 = new Vertex();
-		v2.addAttribute(new Attribute("Nombre","OPF"));
-		Edge e = new Edge(v1,v2);
-		e.addAttribute(new Attribute("Feedback","positivooooo"));
-	    g.addVertex(v1);
-	    g.addVertex(v2);
-	    g.addEdge(e);
-	    Exporter exp = new Exporter();
-	    exp._export(g, "C:\\Users\\fravega1\\Desktop\\graph.txt"); ------- cambiar ruta
-	    */
-	}
 }
+
 
