@@ -238,7 +238,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        // borrar elemento
+        DeleteSelectorWindow dsw = new DeleteSelectorWindow(this);
+        dsw.setVisible(true);
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -319,7 +321,7 @@ public class MainWindow extends javax.swing.JFrame {
                         
         if (originV != null && destinyV != null) {
             Edge toAdd = new Edge(originV, destinyV);
-            for (int i=0; i < 6; i++) {
+            for (int i=0; i < table.getRowCount(); i++) {
                 String name = (String)table.getValueAt(i, 0);
                 if (name != null) {
                     String value = (String)table.getValueAt(i, 1);
@@ -335,11 +337,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     void editVertex(int vertexId) {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         Vertex toEdit = currentGraph.getVertexById(vertexId);
         System.out.println(toEdit.toString());
         EditVertexWindow evw = new EditVertexWindow(this, toEdit);
-        System.out.println("llego hast aca");
         //evw.setVisible(true);
     }
     
@@ -357,9 +357,34 @@ public class MainWindow extends javax.swing.JFrame {
         }
         update();
     }
+    
+    void editEdgeAtts(TableModel table, Edge toEdit, int origin, int destiny) {
+        //cambio el origen y el destino
+        Vertex originV = currentGraph.getVertexById(origin);
+        Vertex destinyV = currentGraph.getVertexById(destiny);
+        if (originV != null && destinyV != null) {
+            toEdit.setOrigin(originV);
+            toEdit.setDestiny(destinyV);
+        }
+        //borro los atributos y agrego los nuevos
+        toEdit.removeAtts();
+        for (int i=0; i < table.getRowCount(); i++) {
+            String name = (String)table.getValueAt(i, 0);
+            if (name != null) {
+                String value = (String)table.getValueAt(i, 1);
+                if (value != null) {
+                    Attribute newAt = new Attribute(name, value); 
+                    toEdit.addAttribute(newAt);
+                }
+            }
+        }
+        update();
+    }
 
     void editEdge(int edgeId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Edge toEdit = currentGraph.getEdgeById(edgeId);
+        
+        EditEdgeWindow eew = new EditEdgeWindow(this, toEdit);
     }
     
     void update() {
@@ -370,7 +395,16 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.repaint();        
     }
 
+    void deleteVertex(int vertexId) {
+        Vertex toDelete = currentGraph.getVertexById(vertexId);
+        currentGraph.removeVertex(toDelete);
+        update();
+    }
 
-
-    
+    void deleteEdge(int edgeId) {
+        Edge toDelete = currentGraph.getEdgeById(edgeId);
+        System.out.println(toDelete);
+        currentGraph.removeEdge(toDelete.getDestiny(), toDelete.getOrigin(), toDelete);
+        update();
+    }
 }

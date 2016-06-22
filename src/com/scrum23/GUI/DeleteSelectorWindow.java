@@ -9,17 +9,17 @@ package com.scrum23.GUI;
  *
  * @author Andres
  */
-public class EditSelectorWindow extends javax.swing.JFrame {
+public class DeleteSelectorWindow extends javax.swing.JFrame {
     private MainWindow informme;
 
     /**
      * Creates new form EditSelectorWindow
      */
-    public EditSelectorWindow() {
+    public DeleteSelectorWindow() {
         initComponents();
     }
     
-    public EditSelectorWindow(MainWindow informme) {
+    public DeleteSelectorWindow(MainWindow informme) {
         this.informme = informme;
         initComponents();
     }
@@ -40,7 +40,7 @@ public class EditSelectorWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar curso o dependencia");
 
-        jLabel1.setText("Ingrese el identificador del curso o dependencia a modificar");
+        jLabel1.setText("Ingrese el identificador del curso o dependencia a eliminar");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,14 +50,14 @@ public class EditSelectorWindow extends javax.swing.JFrame {
 
         jLabel2.setText("ejemplo identificador: 1   || ejemplo dependencia: 12 (arco que conecta curso 1 y 2)");
 
-        jButton1.setText("editar curso");
+        jButton1.setText("eliminar curso");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("editar dependencia");
+        jButton2.setText("eliminar dependencia");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -111,13 +111,13 @@ public class EditSelectorWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int vertexId = Integer.parseInt(jTextField1.getText());
         this.setVisible(false);
-        informme.editVertex(vertexId);
+        informme.deleteVertex(vertexId);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int edgeId = Integer.parseInt(jTextField1.getText());
         this.setVisible(false);
-        informme.editEdge(edgeId);
+        informme.deleteEdge(edgeId);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -137,20 +137,21 @@ public class EditSelectorWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteSelectorWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditSelectorWindow().setVisible(true);
+                new DeleteSelectorWindow().setVisible(true);
             }
         });
     }

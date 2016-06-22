@@ -38,8 +38,9 @@ public class Graph {
         }
     }
 
-    public void removeEdge(Vertex o, Vertex d){
+    public void removeEdge(Vertex o, Vertex d, Edge e){
         internalGraph.removeEdge(o,d);
+        internalGraph.removeEdge(e);
     }
 
     public void removeVertex(Vertex v) {
@@ -88,5 +89,18 @@ public class Graph {
                 return v;
         }
         return null;
+    }
+
+    public Edge getEdgeById(int edgeId) {
+        Set<Edge> allEdges = this.getAllEdges();
+        for (Edge e : allEdges) {
+            if (e.getId() == edgeId)
+                return e;
+        }
+        return null;
+    }
+
+    private Set<Edge> getAllEdges() {
+        return internalGraph.edgeSet();
     }
 }

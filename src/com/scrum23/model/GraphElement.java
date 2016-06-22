@@ -28,4 +28,8 @@ public abstract class GraphElement {
     public Hashtable getAtts() {
         return atts;
     }
+    
+    public int getId(){
+        return id;
+    }
 }

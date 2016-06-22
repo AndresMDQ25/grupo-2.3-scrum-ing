@@ -31,7 +31,5 @@ public class Vertex extends GraphElement{
         id = count;     
     }
     
-    public int getId(){
-        return id;
-    }
+    
 }

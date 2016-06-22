@@ -5,6 +5,13 @@
  */
 package com.scrum23.GUI;
 
+import com.scrum23.model.Attribute;
+import com.scrum23.model.Edge;
+import com.scrum23.model.Vertex;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -18,14 +25,45 @@ public class EditEdgeWindow extends javax.swing.JFrame {
      */
     
     MainWindow informme;
+    private Edge edge;
+    private Hashtable attributes;
+    TableModel attsModel;
     
     public EditEdgeWindow() {
         initComponents();
     }
     
-    public EditEdgeWindow(MainWindow informme) {
+    public EditEdgeWindow(MainWindow informme, Edge toEdit) {
         this.informme = informme;
+        this.edge = toEdit;
+        attributes = toEdit.getAtts();
         initComponents();
+        //seteo por defecto los spinners con origen y fin
+        int origin = edge.getOrigin().getId();
+        int destiny = edge.getDestiny().getId();
+        jSpinner1.setValue(origin);
+        jSpinner2.setValue(destiny);
+        //cargo los datos de los atributos en una tabla
+        Vector allAtts = new Vector<>();
+        for (String key : (Set<String>)attributes.keySet()) {
+            Vector<String> row = new Vector<>();
+            Attribute current = (Attribute)attributes.get(key);
+            row.add(current.getName());
+            row.add(current.getValue());
+            allAtts.add(row);
+        }
+        Vector<String> columnNames = new Vector<>();
+        columnNames.add("Nombre");
+        columnNames.add("Valor");
+        System.out.println(allAtts);
+        //cargo los dos vectores al nuevo modelo
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(allAtts.size());
+        dtm.setColumnCount(2);
+        dtm.setDataVector(allAtts, columnNames);
+        jTable1.setModel(dtm);
+        
+        this.setVisible(true);
     }
     
     public TableModel getTable() {
@@ -159,7 +197,16 @@ public class EditEdgeWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //clickeo OK
+        this.setVisible(false);
+        informme.editEdgeAtts(this.getTable(), this.edge, (int)jSpinner1.getValue(), (int)jSpinner2.getValue());
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
