@@ -39,11 +39,14 @@ public class Exporter {
 	public String getVertex(Vertex v){
 		//Node1 [label = "nombre:OPD ; area:defin ; nivel:2"];
 		atts = v.getAtts();
-		String vertex_declaration = "Node" + v.getId() + "[label = \""; 
-		for(Object name_att : atts.keySet()){
-			vertex_declaration += name_att + ":" + atts.get(name_att) + " ; ";
+		String vertex_declaration = "Node" + v.getId(); 
+		if (!atts.isEmpty()) {
+		    vertex_declaration += "[label = \""; 
+			for(Object name_att : atts.keySet()){
+				vertex_declaration += name_att + ":" + atts.get(name_att) + " ; ";
+			}
+			vertex_declaration = vertex_declaration.substring(0, vertex_declaration.length()-3) + "\"];" + "\n";
 		}
-		vertex_declaration = vertex_declaration.substring(0, vertex_declaration.length()-3) + "\"];" + "\r\n";
 		
 		return vertex_declaration;
 	}
@@ -51,13 +54,14 @@ public class Exporter {
 	public String getEdge(Edge e){
 		//Node1 -> Node2 [label = "feedback"];
 		atts = e.getAtts();
-		String edge_declaration = "Node" + e.getOrigin().getId() + " -> " + "Node" + e.getDestiny().getId() + " [label = \"";
-		for(Object name_att : atts.keySet()){
-			edge_declaration += name_att + ":" + atts.get(name_att) + " ;\r\n";
-		}
-		edge_declaration = edge_declaration.substring(0, edge_declaration.length()-4) + "\"];" + "\r\n";
-		
-		
+		String edge_declaration = "Node" + e.getOrigin().getId() + " -> " + "Node" + e.getDestiny().getId();
+		if (!atts.isEmpty()) {
+			edge_declaration += " [label = \"";
+			for(Object name_att : atts.keySet()){
+				edge_declaration += name_att + ":" + atts.get(name_att) + " ;\r\n";
+			}
+			edge_declaration = edge_declaration.substring(0, edge_declaration.length()-4) + "\"];" + "\n";
+		}		
 		return edge_declaration;
 	}
 }
