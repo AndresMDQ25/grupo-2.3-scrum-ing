@@ -244,8 +244,8 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             Graph imported;
             imported = imp._import(f.getCanonicalPath());
-            //currentGraph=imported; esto creo que deberia andar, braian testealo
-            //update();
+            currentGraph=imported; 
+            update();
         } catch (IOException e) {e.printStackTrace();}
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
