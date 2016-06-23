@@ -251,7 +251,7 @@ public class MainWindow extends javax.swing.JFrame {
         Importer imp = new Importer();
         try {
             Graph imported;
-            imported = imp._import(f.getCanonicalPath());
+            imported = Parser.format("viz")._import(f.getCanonicalPath());
             currentGraph=imported; 
             update();
         } catch (IOException e) {e.printStackTrace();}
