@@ -11,14 +11,13 @@ import com.scrum23.model.Attribute;
 import com.scrum23.model.Edge;
 import com.scrum23.model.Graph;
 import com.scrum23.model.Vertex;
+import com.scrum23.parser.Parser;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import javax.swing.table.TableModel;
 
 /**
@@ -136,9 +135,41 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jMenu1.setText("Abrir desde la BD");
+        jMenu1.addMenuListener(new MenuListener() {
+            @Override
+            public void menuSelected(MenuEvent menuEvent) {
+                currentGraph = Parser.format("db")._import("");
+            }
+
+            @Override
+            public void menuDeselected(MenuEvent menuEvent) {
+
+            }
+
+            @Override
+            public void menuCanceled(MenuEvent menuEvent) {
+
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Guardar a la BD");
+        jMenu3.addMenuListener(new MenuListener() {
+            @Override
+            public void menuSelected(MenuEvent menuEvent) {
+                Parser.format("db")._export(currentGraph, "");
+            }
+
+            @Override
+            public void menuDeselected(MenuEvent menuEvent) {
+
+            }
+
+            @Override
+            public void menuCanceled(MenuEvent menuEvent) {
+
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Importar");
