@@ -15,8 +15,7 @@ import com.scrum23.parser.Parser;
 
 import java.io.File;
 import java.io.IOException;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.TableModel;
@@ -36,6 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //seteo el look and feel para Windows
         try {
+
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -104,6 +104,8 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor de cursos");
         setLocationByPlatform(true);
+        ImageIcon img = new ImageIcon("./resources/icono.png");
+        setIconImage(img.getImage());
 
         jScrollPane1 = graphPanel;
 
