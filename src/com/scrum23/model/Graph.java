@@ -35,6 +35,7 @@ public class Graph {
             internalGraph.addEdge(e.getOrigin(), e.getDestiny(), e);
         }
         catch (Exception ex){
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Relación inválida: El grafo debe ser acíclico", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }

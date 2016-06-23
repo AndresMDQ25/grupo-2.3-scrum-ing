@@ -23,6 +23,7 @@ public class Vertex extends GraphElement{
         if (other == this) return true;
         if (!(other instanceof Vertex))return false;
         Vertex otherVertex = (Vertex)other;
+        if(this.id != ((Vertex) other).getId()) return false;
         if(this.getAtts().equals(otherVertex.getAtts())) return true;
         return false;
     }
