@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //CREO VÉRTICE 1 CON SUS RESPECTIVOS ATRIBUTOS
+        /*//CREO VÉRTICE 1 CON SUS RESPECTIVOS ATRIBUTOS
         Vertex v1 = new Vertex();
         v1.addAttribute(new Attribute("nombre","CM"));
         v1.addAttribute(new Attribute("area","soporte"));
@@ -40,13 +40,13 @@ public class Main {
         g.addVertex(v2);
         g.addVertex(v3);
         g.addEdge(e1);
-        g.addEdge(e2);
+        g.addEdge(e2);*/
         
-        MainWindow main = new MainWindow(g);
+        MainWindow main = new MainWindow(new Graph());
         main.setVisible(true);
 
         //IMPRIMO EL GRAFO
-        System.out.println(g.toString());
+        //System.out.println(g.toString());
 
     }
 }

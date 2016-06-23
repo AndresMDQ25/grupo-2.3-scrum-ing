@@ -15,6 +15,7 @@ import com.scrum23.parser.Parser;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -139,6 +140,7 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void menuSelected(MenuEvent menuEvent) {
                 currentGraph = Parser.format("db")._import("");
+				update();
             }
 
             @Override
@@ -158,6 +160,7 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void menuSelected(MenuEvent menuEvent) {
                 Parser.format("db")._export(currentGraph, "");
+				JOptionPane.showMessageDialog(null, "El grafo se guardó correctamente en la BD", "", JOptionPane.INFORMATION_MESSAGE);
             }
 
             @Override
