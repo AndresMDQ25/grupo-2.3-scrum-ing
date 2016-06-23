@@ -45,10 +45,10 @@ public class Exporter {
 			for(Object name_att : atts.keySet()){
 				vertex_declaration += name_att + ":" + atts.get(name_att) + " ; ";
 			}
-			vertex_declaration = vertex_declaration.substring(0, vertex_declaration.length()-3) + "\"];" + "\n";
+			vertex_declaration = vertex_declaration.substring(0, vertex_declaration.length()-3) + "\"];";
 		}
-		
-		return vertex_declaration;
+
+		return vertex_declaration  + System.lineSeparator();
 	}
 	
 	public String getEdge(Edge e){
@@ -58,11 +58,11 @@ public class Exporter {
 		if (!atts.isEmpty()) {
 			edge_declaration += " [label = \"";
 			for(Object name_att : atts.keySet()){
-				edge_declaration += name_att + ":" + atts.get(name_att) + " ;\r\n";
+				edge_declaration += name_att + ":" + atts.get(name_att) + System.lineSeparator();
 			}
-			edge_declaration = edge_declaration.substring(0, edge_declaration.length()-4) + "\"];" + "\n";
+			edge_declaration = edge_declaration.substring(0, edge_declaration.length()-4) + "\"];";
 		}		
-		return edge_declaration;
+		return edge_declaration + System.lineSeparator();
 	}
 }
 
