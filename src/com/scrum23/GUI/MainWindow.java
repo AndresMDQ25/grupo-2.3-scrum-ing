@@ -248,7 +248,6 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         FileOperations op = new FileOperations();
         File f = op.openFile();
-        Importer imp = new Importer();
         try {
             Graph imported;
             imported = Parser.format("viz")._import(f.getCanonicalPath());
