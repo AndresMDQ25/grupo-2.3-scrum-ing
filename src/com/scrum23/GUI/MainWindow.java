@@ -202,6 +202,24 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Acerca de");
+
+        jMenu5.addMenuListener(new MenuListener() {
+            public void menuSelected(MenuEvent menuEvent) {
+                JOptionPane.showMessageDialog(null, "EN CONSTRUCCIÓN, COMO LAS PPS", "", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            @Override
+            public void menuDeselected(MenuEvent menuEvent) {
+
+            }
+
+            @Override
+            public void menuCanceled(MenuEvent menuEvent) {
+
+            }
+        });
+
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
