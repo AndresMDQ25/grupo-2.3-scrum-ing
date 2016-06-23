@@ -17,12 +17,11 @@ public class DrawGraph {
 				//directorios de los archivos				
 				String dir_exe = dir + "\\graphviz\\release\\bin\\dot.exe"; // directorio del ejecutable
 				String dir_entrada = path;
-				String dir_salida = path + ".pdf"; //directorio de salida del grafo
-				System.out.println(" 1" + dir_salida);
-				
+				String dir_salida = path.substring(0, path.length()-4) + ".pdf"; //directorio de salida del grafo
+							
 				String param_formato = "-Tpdf";		//formato de salida
 				String param = "-o";	//por defecto
-				
+								
 				//creacion de los comandos por consola
 				
 				String[] cmd = new String[5];{
@@ -34,10 +33,15 @@ public class DrawGraph {
 			    cmd[4] = dir_salida;	//ruta de salida del grafo
 				}
 				
+				System.out.println(dir_exe);
+				System.out.println(dir_entrada);
+				System.out.println(dir_salida);
+				
 				//ejecucion del comando
 			    
 			    Runtime.getRuntime().exec( cmd );
 			    JOptionPane.showMessageDialog(null, "Se ha generado un archivo pdf en el directorio especificado");
+			    
 			} catch(Exception e) {
 			       e.printStackTrace();
 			}
