@@ -189,6 +189,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText(".viz");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
@@ -244,12 +249,26 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             Graph imported;
             imported = imp._import(f.getCanonicalPath());
-            //currentGraph=imported; esto creo que deberia andar, braian testealo
-            //update();
+            currentGraph=imported; 
+            update();
         } catch (IOException e) {e.printStackTrace();}
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        FileOperations op = new FileOperations();
+        File f = op.openFile();
+        try {
+			Parser.format("viz")._export(currentGraph, f.getCanonicalPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         EditSelectorWindow esw = new EditSelectorWindow(this);
@@ -429,6 +448,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.setViewport(graphPanel.getViewport());
         jScrollPane1.revalidate();
         jScrollPane1.repaint();        
+        
     }
 
     void deleteVertex(int vertexId) {

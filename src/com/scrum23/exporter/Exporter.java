@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+
+import com.scrum23.io.FileOperations;
 import com.scrum23.model.Attribute;
 import com.scrum23.model.Edge;
 import com.scrum23.model.Graph;
@@ -27,13 +29,9 @@ public class Exporter {
 		
 		graph_txt = vertex_declaration + edge_declaration + "}";
 	
-	
-		try {
-			FileWriter file = new FileWriter(path);
-			file.write(graph_txt + "\r\n");
-			file.close();
-		} catch (IOException e) {e.printStackTrace();}
-		
+		FileOperations operation = new FileOperations();
+		operation.saveFile(path, graph_txt);
+		DrawGraph.generatePDF(path);
 		return true;
 	
 	}		
