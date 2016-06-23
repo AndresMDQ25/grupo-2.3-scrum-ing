@@ -8,6 +8,7 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 import java.util.Set;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -34,7 +35,7 @@ public class Graph {
             internalGraph.addEdge(e.getOrigin(), e.getDestiny(), e);
         }
         catch (Exception ex){
-            System.out.println("NO SE PUDO AGREGAR ARCO: "+e.toString());
+            JOptionPane.showMessageDialog(null, "Relación inválida: El grafo debe ser acíclico", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
